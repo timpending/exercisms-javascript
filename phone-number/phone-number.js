@@ -10,8 +10,18 @@ function PhoneNumber(input) {
     } else if (cleanNum.length===11 && cleanNum[0] ==='1'){
       return cleanNum.substring(1, cleanNum.length);
     }
-    return cleanNum
+    return cleanNum;
+  };
+
+  PhoneNumber.prototype.areaCode = function() {
+    return this.number().substring(0, 3);
   }
+
+  PhoneNumber.prototype.toString = function(){
+    let shortNum = this.number().substring(3, this.badNum.length);
+    return "(" + this.areaCode() + ") " + shortNum.substring(0, 3) + "-" + shortNum.substring(3, shortNum.length);
+  }
+
 
 
 
