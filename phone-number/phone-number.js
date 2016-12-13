@@ -1,16 +1,14 @@
 function PhoneNumber(input) {
-  this.badNum = input;
+  this.cleanNum = input.replace(/\D/g,'');
 }
   PhoneNumber.prototype.number = function() {
-    let cleanNum = this.badNum.replace(/\D/g,'');
-    if (cleanNum.length>11 || cleanNum.length<10){
-      return '0000000000';
-    } else if (cleanNum.length===11 && cleanNum[0]!=='1'){
-      return '0000000000';
-    } else if (cleanNum.length===11 && cleanNum[0] ==='1'){
-      return cleanNum.substring(1, cleanNum.length);
-    }
-    return cleanNum;
+    if (this.cleanNum.length === 10) {
+      return this.cleanNum
+    };
+    if (this.cleanNum.length===11 && this.cleanNum[0] ==='1') {
+      return this.cleanNum.substring(1,this.cleanNum.length);
+    };
+    return '0000000000';
   };
 
   PhoneNumber.prototype.areaCode = function() {
@@ -18,8 +16,7 @@ function PhoneNumber(input) {
   }
 
   PhoneNumber.prototype.toString = function(){
-    let shortNum = this.number().substring(3, this.badNum.length);
-    return "(" + this.areaCode() + ") " + shortNum.substring(0, 3) + "-" + shortNum.substring(3, shortNum.length);
+    return `(${this.areaCode()}) ${this.cleanNum.substring(3,6)}-${this.cleanNum.substring(6, this.cleanNum.length)}`;
   }
 
 
