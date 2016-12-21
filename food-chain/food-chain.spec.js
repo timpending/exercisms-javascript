@@ -149,4 +149,3 @@ describe('Food Chain', function () {
   });
 
 });
-
