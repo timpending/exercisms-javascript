@@ -6,7 +6,6 @@ FoodChain.prototype.verse = function(x, y){
     song = 'I know an old lady who swallowed a horse.\n' + 'She\'s dead, of course!\n'
     return song;
   }
-  if (!y) {
     if (x > 1) {
       song += this.firstLine(this.getAnimal(x));
       song += this.secondLine(this.getAnimal(x));
@@ -16,8 +15,16 @@ FoodChain.prototype.verse = function(x, y){
       song += this.firstLine(this.getAnimal(x));
     }
     song += `I don\'t know why she swallowed the fly. Perhaps she\'ll die.\n`;
-  }
-  return song;
+    return song;
+}
+
+FoodChain.prototype.verses = function (x, y) {
+  let song = '';
+  while (x <= y) {
+      song +=this.verse(x) + '\n';
+      x++;
+    }
+    return song;
 }
 
 FoodChain.prototype.getAnimal = function (position) {
